@@ -1,0 +1,46 @@
+spring:
+  datasource:
+#    配置这个属性的意义在于，如果存在多个数据源，监控的时候可以通过名字来区分开来。 如果没有配置，将会生成一个名字，格式是："DataSource-" + System.identityHashCode(this)
+    name: druidDataSource
+#    连接池类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.1.205:3306/test?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8&serverTimezone=UTC
+      username: root
+      password: admin
+#      配置监控统计拦截的filters，去掉后监控界面sql无法进行统计。wall:防御sql注入 stat:监控统计
+      filters: stat,wall,config
+#      最大连接数
+      max-active: 100
+#      初始化大小
+      initial-size: 1
+#      获取连接等待超时时间（毫秒）
+      max-wait: 60000
+#      最小连接数
+      min-idle: 1
+#      间隔多久才进行一次检测。检测需要关闭的空闲连接（毫秒）
+      time-between-eviction-runs-millis: 60000
+#      一个连接在池中最小生存的时间（毫秒）
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'  # 用来检测连接是否有效的sql
+      test-while-idle: true # 	建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。 获取到了不可用的数据库连接，一般由应用处理异常。
+      test-on-borrow: false # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。【出于性能考虑一般生产环境不开启】
+      test-on-return: false # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能【出于性能考虑一般生产环境不开启】
+      pool-prepared-statements: false  # 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+      max-open-prepared-statements: -1  # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+      max-pool-prepared-statement-per-connection-size: -1
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:mapper/*/*Mapper.xml
+  type-aliases-package: com.cuicui.demomp.*.entity
+  configuration:
+    call-setters-on-nulls: true
+    cache-enabled: true
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      table-underline: true
+# swagger开关
+swagger:
+  enable: true
