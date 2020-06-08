@@ -3,10 +3,10 @@ package com.cuicui.demomp.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * 数据源属性,和yml中的属性一一对应 驼峰命名
- * @author Louis
- * @date Oct 29, 2018
- */
+*@Description 数据源属性,和yml中的属性一一对应 驼峰命名
+*@author Cuicui
+*@date 2020/6/8 15:12
+*/
 @ConfigurationProperties(prefix = "spring.datasource.druid")
 public class DruidDataSourceProperties {
 

@@ -32,14 +32,20 @@ spring:
       max-pool-prepared-statement-per-connection-size: -1
 # mybatis-plus
 mybatis-plus:
+# mapper文件所在位置，注意，如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml  如果是放在resource目录 classpath:/mapper/*Mapper.xml
   mapper-locations: classpath:mapper/*/*Mapper.xml
+# 实体所在位置
   type-aliases-package: com.cuicui.demomp.*.entity
   configuration:
+#  使用map接收返回值时，如果值为空则填充默认值：null，注意：如果没有此配置，为空的值会被过滤不返回。
     call-setters-on-nulls: true
+# 开启Mybatis二级缓存，默认为 true
     cache-enabled: true
+# 配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
     map-underscore-to-camel-case: true
   global-config:
     db-config:
+#     驼峰下划线转换
       table-underline: true
 # swagger开关
 swagger:

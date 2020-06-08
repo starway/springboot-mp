@@ -17,10 +17,10 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * Druid数据源配置
- * @author Louis
- * @date Oct 29, 2018
- */
+*@Description Druid数据源配置
+*@author Cuicui
+*@date 2020/6/8 15:13
+*/
 @Configuration
 @EnableConfigurationProperties({DruidDataSourceProperties.class})
 public class DruidConfig {

@@ -2,6 +2,7 @@ package com.cuicui.demomp.utils;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
+
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
@@ -33,7 +34,7 @@ public class CodeGenerator {
         System.out.println(help.toString());
         if (scanner.hasNext()) {
             String ipt = scanner.next();
-            if (StringUtils.isNotEmpty(ipt)) {
+            if (StringUtils.isNotBlank(ipt)) {
                 return ipt;
             }
         }
@@ -58,9 +59,11 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
+        //* 配置数据库
         dsc.setUrl("jdbc:mysql://192.168.1.205:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        //* 配置数据库账号密码
         dsc.setUsername("root");
         dsc.setPassword("admin");
         mpg.setDataSource(dsc);
@@ -68,6 +71,7 @@ public class CodeGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(scanner("模块名"));
+        //* 配置包名
         pc.setParent("com.cuicui.demomp");
         mpg.setPackageInfo(pc);
 
